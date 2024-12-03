@@ -3,11 +3,11 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./backend
+      context: ./backend # position of dockerfile
       dockerfile: Dockerfile
     container_name: backend
     volumes:
-      - ./backend:/app
+      - ./backend:/app # map of folder local wtih folder container
     environment:
       - NODE_ENV=production
     networks:
@@ -15,11 +15,11 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ./frontend # position of dockerfile
       dockerfile: Dockerfile
     container_name: frontend
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app # map of folder local wtih folder container
     environment:
       - NODE_ENV=production
     command: npm run build && npm run export
@@ -32,16 +32,32 @@ services:
     ports:
       - '8050:80'
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro # map of folder local wtih folder container
     depends_on:
       - frontend
       - backend
     networks:
       - net
 
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.34
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_USER: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "33061:3306"
+    networks:
+      - net
+
 volumes:
   node_modules_backend:
   node_modules_frontend:
+  mysql_data:
 
 networks:
   net:
