@@ -33,11 +33,8 @@ services:
       context: ./frontend # position of dockerfile
       dockerfile: Dockerfile
     container_name: frontend
-    volumes:
-      - ./frontend:/app # map of folder local wtih folder container
-    environment:
-      - NODE_ENV=production
-    command: npm run build && npm run export
+    networks:
+      - net
 
   nginx:
     build:
