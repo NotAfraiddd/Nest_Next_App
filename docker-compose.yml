@@ -2,19 +2,19 @@ version: '3.8'
 
 services:
   mysql:
-  container_name: mysql
-  image: mysql:8.0.34
-  environment:
-    MYSQL_DATABASE: ${DB_DATABASE}
-    MYSQL_ROOT_USER: ${DB_USERNAME}
-    MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-  volumes:
-    - mysql_data:/var/lib/mysql
-  ports:
-    - "33061:3306"
-  networks:
-    - net
+    container_name: mysql
+    image: mysql:8.0.34
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_USER: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "33061:3306"
+    networks:
+      - net
 
   backend:
     build:
