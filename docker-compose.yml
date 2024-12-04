@@ -33,6 +33,10 @@ services:
       context: ./frontend # position of dockerfile
       dockerfile: Dockerfile
     container_name: frontend
+    volumes:
+      - ./frontend:/app
+    environment:
+      - NODE_ENV=production
     networks:
       - net
 
