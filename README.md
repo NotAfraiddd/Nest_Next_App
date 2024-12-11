@@ -26,7 +26,12 @@ npm install
 http://localhost:3000
 ```
 
-## NOTE
+## Frontend
 ```
 npm run dev
+```
+
+## Backend
+```
+npm run start:dev
 ```
