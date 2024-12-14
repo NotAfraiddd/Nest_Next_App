@@ -1,11 +1,6 @@
 'use client';
 
 // import { useSearchRestaurants } from '@/api/RestaurantApi';
-// import CuisineFilter from '@/components/CuisineFilter';
-// import SearchBar, { SearchForm } from '@/components/SearchBar';
-// import SearchResultCard from '@/components/SearchResultCard';
-// import SearchResultInfo from '@/components/SearchResultInfo';
-// import SortOptionDropdown from '@/components/SortOptionDropdown';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchBar, { SearchForm } from '@/components/search-bar';

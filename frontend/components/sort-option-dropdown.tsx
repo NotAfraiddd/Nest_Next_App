@@ -9,7 +9,6 @@ import { SORT_OPTIONS } from '@/constants';
 
 const SortOptionDropdown = ({ onChange, sortOption }: SortOptionProps) => {
   const selectedSortLabel = SORT_OPTIONS.find((option) => option.value === sortOption)?.label || SORT_OPTIONS[0].label;
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

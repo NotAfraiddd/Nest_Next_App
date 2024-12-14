@@ -8,7 +8,7 @@ type Props = {
 
 const SearchResultCard = ({ restaurant }: Props) => {
   return (
-    <Link href={`/detail/${restaurant._id}`} className="grid lg:grid-cols-[2fr_3fr] gap-5 group">
+    <Link href={`/restaurant/${restaurant._id}`} className="grid lg:grid-cols-[2fr_3fr] gap-5 group">
       <div className="relative w-full" style={{ paddingBottom: 'calc(100% / (16 / 6))' }}>
         <img
           src={restaurant.imageUrl}

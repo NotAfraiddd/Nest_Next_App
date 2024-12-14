@@ -17,3 +17,19 @@ export type Restaurant = {
     imageUrl: string;
     lastUpdated: string;
 };
+
+export type CartItem = {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+export type User = {
+  _id: string;
+  email: string;
+  name: string;
+  addressLine1: string;
+  city: string;
+  country: string;
+};

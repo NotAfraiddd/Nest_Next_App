@@ -1,4 +1,4 @@
-import { Restaurant } from "@/interface/common";
+import { Restaurant, User } from "@/interface/common";
 
 export const CUISINE_LIST = [
     "American",
@@ -131,5 +131,15 @@ export const restaurants: Restaurant[] = [
     lastUpdated: "2024-12-14T06:00:00Z",
   },
 ];
+
+export const currentUser: User = {
+  _id: "12345",
+  email: "johndoe@example.com",
+  name: "John Doe",
+  addressLine1: "123 Main St",
+  city: "Hanoi",
+  country: "Vietnam",
+};
+
 
   
