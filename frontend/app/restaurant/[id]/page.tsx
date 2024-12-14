@@ -114,7 +114,7 @@ const DetailPage = () => {
           className="absolute inset-0 rounded-md w-full h-full object-cover"
         />
       </div>
-      <div className="grid md:grid-cols-[4fr_2fr] gap-5 md:px-32 pb-12">
+      <div className="grid md:grid-cols-[4fr_2fr] gap-5 md:px-20 pb-12">
         <div className="flex flex-col gap-4">
           <RestaurantInfo restaurant={restaurant} />
           <span className="text-2xl font-bold tracking-tight">Menu</span>

@@ -1,7 +1,7 @@
 // import { useAuth0 } from '@auth0/auth0-react';
 // import { useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
-import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from './ui/dialog';
 // import { useGetMyUser } from '@/api/MyUserApi';
 // import { useRouter } from 'next/router';
 import UserProfileForm, { UserFormData } from './user-profile-form';
@@ -43,11 +43,13 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button disabled={disabled} className="bg-orange-500 flex-1">
-          Go to checkout
-        </Button>
+        <DialogTitle>
+          <Button disabled={disabled} className="bg-orange-500 flex-1">
+            Go to checkout
+          </Button>
+        </DialogTitle>
       </DialogTrigger>
-      <DialogContent className="max-w-[425px] md:min-w-[700px] bg-gray-50">
+      <DialogContent className="max-w-[425px] md:min-w-[700px] bg-gray-50" aria-describedby="content">
         <UserProfileForm
           currentUser={currentUser}
           onSave={onCheckout}

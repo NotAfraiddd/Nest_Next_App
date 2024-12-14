@@ -1,4 +1,4 @@
-import { Restaurant, User } from "@/interface/common";
+import { Order, OrderStatus, Restaurant, User } from "@/interface/common";
 
 export const CUISINE_LIST = [
     "American",
@@ -140,6 +140,109 @@ export const currentUser: User = {
   city: "Hanoi",
   country: "Vietnam",
 };
+
+export const orders: Order[] = [
+  {
+    _id: "order12345",
+    restaurant: {
+      _id: "5",
+      user: "user654",
+      restaurantName: "Burgers & Fries",
+      city: "New York",
+      country: "USA",
+      deliveryPrice: 500,
+      estimatedDeliveryTime: 15,
+      cuisines: ["American", "Burgers", "Fast Food"],
+      menuItems: [
+        { _id: "m13", name: "Cheeseburger", price: 950 },
+        { _id: "m14", name: "Fries", price: 450 },
+        { _id: "m15", name: "Chicken Nuggets", price: 650 },
+      ],
+      imageUrl: "https://media.istockphoto.com/id/2157436773/vi/anh/cafeteria-double-beef-burger-gourmet.jpg?s=2048x2048&w=is&k=20&c=OwaoXyF68_sfgMeAaHCxMniDG5PuAv0y2Lz34piKaZM=",
+      lastUpdated: "2024-12-14T06:00:00Z",
+    },
+    user: {
+      _id: "user101",
+      email: "john.doe@example.com",
+      name: "John Doe",
+      addressLine1: "123 Elm Street",
+      city: "London",
+      country: "UK",
+    },
+    cartItems: [
+      {
+        menuItemId: "menu123",
+        name: "Spaghetti Carbonara",
+        quantity: "2",
+      },
+      {
+        menuItemId: "menu124",
+        name: "Cappuccino",
+        quantity: "1",
+      },
+    ],
+    deliveryDetails: {
+      name: "John Doe",
+      addressLine1: "123 Elm Street",
+      city: "London",
+      email: "john.doe@example.com",
+    },
+    totalAmount: 2500,  // In pence (i.e., £25.00)
+    status: "placed" as OrderStatus,  // Order is placed, not yet processed
+    createdAt: "2024-12-14T12:00:00Z",
+    restaurantId: "restaurant6789",
+  },
+  {
+    _id: "order98765",
+    restaurant: {
+      _id: "4",
+      user: "user321",
+      restaurantName: "Pasta Delight",
+      city: "Rome",
+      country: "Italy",
+      deliveryPrice: 600,
+      estimatedDeliveryTime: 40,
+      cuisines: ["Italian", "Pasta", "Traditional"],
+      menuItems: [
+        { _id: "m10", name: "Spaghetti Carbonara", price: 1100 },
+        { _id: "m11", name: "Lasagna", price: 1300 },
+        { _id: "m12", name: "Penne Arrabbiata", price: 1000 },
+      ],
+      imageUrl: "https://media.istockphoto.com/id/585769692/vi/anh/spaghetti-ngon-%C4%91%C6%B0%E1%BB%A3c-ph%E1%BB%A5c-v%E1%BB%A5-tr%C3%AAn-%C4%91%C4%A9a-%C4%91en.jpg?s=612x612&w=0&k=20&c=I-NLEeJj8VjGPoWcA2a36Q8vHyR6VEqVJI72TNOGnto=",
+      lastUpdated: "2024-12-14T07:00:00Z",
+    },
+    user: {
+      _id: "user202",
+      email: "jane.doe@example.com",
+      name: "Jane Doe",
+      addressLine1: "456 Pine Street",
+      city: "Tokyo",
+      country: "Japan",
+    },
+    cartItems: [
+      {
+        menuItemId: "menu234",
+        name: "California Roll",
+        quantity: "1",
+      },
+      {
+        menuItemId: "menu235",
+        name: "Miso Soup",
+        quantity: "2",
+      },
+    ],
+    deliveryDetails: {
+      name: "Jane Doe",
+      addressLine1: "456 Pine Street",
+      city: "Tokyo",
+      email: "jane.doe@example.com",
+    },
+    totalAmount: 3500,  // In pence (i.e., ¥35.00)
+    status: "delivered" as OrderStatus,  // Order has been delivered to the customer
+    createdAt: "2024-12-13T15:30:00Z",
+    restaurantId: "restaurant54321",
+  },
+];
 
 
   
