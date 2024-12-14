@@ -1,3 +1,4 @@
+'use client';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,7 +21,7 @@ export type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
   currentUser: User;
-  onSave: (userProfileData: UserFormData) => void;
+  onSave?: (userProfileData: UserFormData) => void;
   isLoading?: boolean;
   title?: string;
   buttonText?: string;
@@ -36,9 +37,11 @@ const UserProfileForm = ({ onSave, isLoading, currentUser, title = 'User Profile
     form.reset(currentUser);
   }, [currentUser, form]);
 
+  const handleSubmit = onSave || (() => {});
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSave)} className="space-y-4 bg-gray-50 rounded-lg md:p-10">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 bg-gray-50 rounded-lg md:p-10">
         <div>
           <h2 className="text-2xl font-bold">{title}</h2>
           <FormDescription>View and change your profile information here</FormDescription>
