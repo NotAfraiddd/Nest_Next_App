@@ -1,13 +1,13 @@
-import { CircleUser } from "lucide-react";
+import { CircleUser } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
+import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
 
 const UsernameMenu = () => {
   return (
@@ -18,7 +18,7 @@ const UsernameMenu = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
-          <Link href="/manage-restaurant" className="font-bold hover:text-orange-500">
+          <Link href="/restaurant/manage" className="font-bold hover:text-orange-500">
             Manage Restaurant
           </Link>
         </DropdownMenuItem>
@@ -29,11 +29,7 @@ const UsernameMenu = () => {
         </DropdownMenuItem>
         <Separator />
         <DropdownMenuItem>
-          <Button
-            className="flex flex-1 font-bold bg-orange-500"
-          >
-            Log Out
-          </Button>
+          <Button className="flex flex-1 font-bold bg-orange-500">Log Out</Button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

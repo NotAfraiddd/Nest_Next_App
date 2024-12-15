@@ -28,7 +28,7 @@ const OrderStatusHeader = ({ order }: Props) => {
         <span>Order Status: {getOrderStatusInfo().label}</span>
         <span>Expected by: {getExpectedDelivery()}</span>
       </h1>
-      {/* <Progress className="animate-pulse" value={getOrderStatusInfo().progressValue} /> */}
+      <Progress className="animate-pulse" value={getOrderStatusInfo().progressValue} />
     </div>
   );
 };
