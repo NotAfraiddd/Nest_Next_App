@@ -4,12 +4,12 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { PhotoController } from './photo/photo.controller';
 import { PhotoModule } from './photo/photo.module';
-import { UserModule } from './user/user.module';
-import { UserControllerController } from './user-controller/user-controller.controller';
+// import { UserModule } from './user/user.module';
+// import { UserController } from './user/user.controller';
 
 @Module({
-  imports: [DatabaseModule, PhotoModule, UserModule],
-  controllers: [AppController, UserControllerController],
+  imports: [DatabaseModule, PhotoModule],
+  controllers: [AppController ],
   providers: [AppService],
 })
 export class AppModule {}

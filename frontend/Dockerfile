@@ -1,12 +1,12 @@
-# frontend/Dockerfile
-FROM node:18
+FROM node:22-alpine as development
+
 WORKDIR /app
 
 COPY package*.json ./
+
 RUN npm install
 
 COPY . .
-RUN npm run build
+RUN npm run dev
 
 CMD ["npm", "run", "start"]
-EXPOSE 3000
