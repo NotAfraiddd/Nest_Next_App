@@ -1,9 +1,9 @@
 import { InjectMapper } from '@automapper/nestjs';
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Like, Repository } from 'typeorm';
-import { User } from './user.entity';
 import { Mapper } from '@automapper/core';
 import { CreateUserDto, GetAllUserDto, GetUserDto, UpdateUserDto } from './user.dto';
+import { User } from './user.entity';
 
 @Injectable()
 export class UserService {
@@ -54,11 +54,11 @@ export class UserService {
      * @returns 
      */
     async findOne(id: number): Promise<User> {
-        const user = await this.userRepository.findOne({
-            where: { id: id },
-        });
+        const user = await this.userRepository.findOne({ where: { id }, relations: ['restaurants', 'orders'] });
 
-        return this.classMapper.map(user, User, GetUserDto);
+        const userDto = this.classMapper.map(user, User, GetUserDto);
+
+        return userDto;
     }
 
     /**

@@ -1,5 +1,7 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Order } from 'src/order/order.entity';
+import { Restaurant } from 'src/restaurant/restaurant.entity';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -29,4 +31,11 @@ export class User {
 
   @DeleteDateColumn({ type: 'timestamp', nullable: true })
   deleted_at: Date | null;
+
+  // Relationships
+  @OneToMany(() => Restaurant, (restaurant) => restaurant.user)
+  restaurants: Restaurant[];
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
 }

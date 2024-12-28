@@ -31,6 +31,7 @@ export class UserProfile extends AutomapperProfile {
 
 
             createMap(mapper, User, GetUserDto,
+                forMember((dest) => dest.id, mapFrom((src) => src.id)),
                 forMember((dest) => dest.email, mapFrom((src) => src.email)),
                 forMember((dest) => dest.name, mapFrom((src) => src.name)),
                 forMember((dest) => dest.addressLine1, mapFrom((src) => src.addressLine1)),

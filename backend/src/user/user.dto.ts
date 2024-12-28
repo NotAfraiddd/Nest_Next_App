@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, MaxLength, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, MaxLength, IsOptional, IsDateString } from 'class-validator';
+import { Order } from 'src/order/order.entity';
+import { Restaurant } from 'src/restaurant/restaurant.entity';
 
 export class CreateUserDto {
   @ApiProperty()
@@ -68,13 +70,28 @@ export class GetUserDto {
   country: string;
 
   @ApiProperty()
+  @IsOptional()
+  @IsDateString()
   created_at: Date | null;
 
   @ApiProperty()
+  @IsOptional()
+  @IsDateString()
   updated_at: Date | null;
 
   @ApiProperty()
+  @IsOptional()
+  @IsDateString()
   deleted_at: Date | null;
+
+  // Add these properties if you need them in the DTO
+  @ApiProperty({ type: [Restaurant], description: 'List of restaurants the user owns.' })
+  @IsOptional()
+  restaurants: Restaurant[];
+
+  @ApiProperty({ type: [Order], description: 'List of orders placed by the user.' })
+  @IsOptional()
+  orders: Order[];
 }
 
 export class UpdateUserDto {
