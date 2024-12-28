@@ -15,7 +15,12 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, documentFactory);
 
   // Validation middleware
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe(
+    {
+      whitelist: true,
+      skipMissingProperties: true,
+    }
+  ));
   await app.listen(3000);
 }
 bootstrap();

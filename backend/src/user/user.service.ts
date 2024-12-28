@@ -1,9 +1,9 @@
 import { InjectMapper } from '@automapper/nestjs';
-import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Like, Repository } from 'typeorm';
 import { User } from './user.entity';
 import { Mapper } from '@automapper/core';
-import { CreateUserDto } from './user.dto';
+import { CreateUserDto, GetAllUserDto, GetUserDto, UpdateUserDto } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -12,6 +12,27 @@ export class UserService {
         private userRepository: Repository<User>,
         @InjectMapper() private readonly classMapper: Mapper,
     ) { }
+
+    /**
+ * get all
+ * @param getAllUserDto 
+ * @returns 
+ */
+    async findAll(getAllUserDto: GetAllUserDto): Promise<User[]> {
+        const { keyword } = getAllUserDto;
+        if (keyword) {
+            return this.userRepository.find({
+                where: [
+                    { email: Like(`%${keyword}%`) },
+                    { name: Like(`%${keyword}%`) },
+                    { addressLine1: Like(`%${keyword}%`) },
+                    { city: Like(`%${keyword}%`) },
+                    { country: Like(`%${keyword}%`) },
+                ],
+            });
+        }
+        return this.userRepository.find();
+    }
 
     /**
      * create
@@ -25,5 +46,49 @@ export class UserService {
             User,
         );
         return this.userRepository.save(user);
+    }
+
+    /**
+     * get detail
+     * @param id 
+     * @returns 
+     */
+    async findOne(id: number): Promise<User> {
+        const user = await this.userRepository.findOne({
+            where: { id: id },
+        });
+
+        return this.classMapper.map(user, User, GetUserDto);
+    }
+
+    /**
+     * update
+     * @param id 
+     * @returns 
+     */
+    async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+        const user = await this.userRepository.findOne({
+            where: { id: id },
+        });
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        const updatedUser = this.classMapper.map(updateUserDto, UpdateUserDto, User);
+        this.userRepository.merge(user, updatedUser);
+        return this.userRepository.save(user);
+    }
+
+    /**
+     * delete
+     * @param id 
+     * @returns Boolean
+     */
+    async delete(id: number): Promise<Boolean> {
+        const result = await this.userRepository.softDelete(id);
+
+        if (!result.affected)
+            return false;
+        return true;
     }
 }
